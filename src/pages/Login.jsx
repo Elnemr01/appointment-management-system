@@ -1,5 +1,5 @@
 import { useState } from "react"
-import '../Styles/login.css'
+import './pageStyle/login.css'
 const Login = () => {
     const [login, setLogin] = useState(false);
     const handleSubmit = (e) => {
