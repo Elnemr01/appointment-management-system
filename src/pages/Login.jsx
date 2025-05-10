@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import '../Styles/login.css'
 const Login = () => {
     const [login, setLogin] = useState(false);
     const handleSubmit = (e) => {
@@ -9,10 +9,10 @@ const Login = () => {
         <>
             <form className=" h-screen flex items-center" onSubmit={handleSubmit}>
 
-                <div className="flex m-auto gap-5 p-6 flex-col w-96 shadow-lg text-gray-500">
+                <div className="form-container">
 
                     {/* form header */}
-                    <h1 className="text-xl font-semibold">{login ? 'Login' : 'Create Account'}</h1>
+                    <h1 className="form-title">{login ? 'Login' : 'Create Account'}</h1>
 
                     <p>{login ? 'Please log in to book appointment' : 'Please sign up to book appointment'}</p>
 
@@ -22,40 +22,40 @@ const Login = () => {
                             <>
                                 <div>
                                     <p>Email</p>
-                                    <input type="email" className="border w-full p-2 mt-1 focus:border-black" />
+                                    <input type="email" className="form-input" />
                                 </div>
 
                                 <div>
                                     <p>Password</p>
-                                    <input type="password" className="border w-full p-2 mt-1 focus:border-black" />
+                                    <input type="password" className="form-input" />
                                 </div>
 
-                                <button type="submit" className="text-white bg-blue-500 p-3 rounded-lg">Login</button>
-                                <p className="text-sm"> Create an new account?
-                                    <span className="ml-1 cursor-pointer text-blue-400 underline" onClick={() => setLogin(false)}>Click here</span>
+                                <button type="submit" className="btn-primary">Login</button>
+                                <p className="form-text"> Create an new account?
+                                    <span className="toggle-link" onClick={() => setLogin(false)}>Click here</span>
                                 </p>
                             </>
                         ) : (
                             <>
                                 <div>
                                     <p>Full Name</p>
-                                    <input type="text" className="border w-full p-2 mt-1 focus:border-black" />
+                                    <input type="text" className="form-input" />
                                 </div>
 
                                 <div>
                                     <p>Email</p>
-                                    <input type="email" className="border w-full p-2 mt-1 focus:border-black" />
+                                    <input type="email" className="form-input" />
                                 </div>
 
                                 <div>
                                     <p>Password</p>
-                                    <input type="password" className="border w-full p-2 mt-1 focus:border-black" />
+                                    <input type="password" className="form-input" />
                                 </div>
 
-                                <button type="submit" className="text-white bg-blue-500 p-3 rounded-lg">Create account</button>
+                                <button type="submit" className="btn-primary">Create account</button>
 
-                                <p className="text-sm"> Already have an account?
-                                    <span className="ml-1 cursor-pointer text-blue-400 underline" onClick={() => setLogin(true)}>Login here</span>
+                                <p className="form-text"> Already have an account?
+                                    <span className="toggle-link" onClick={() => setLogin(true)}>Login here</span>
                                 </p>
                             </>
                         )
