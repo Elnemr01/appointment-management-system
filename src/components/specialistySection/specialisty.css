@@ -15,7 +15,7 @@ section .specialistyData a:hover {
 }
 
 section .specialistyData img {
-    @apply max-w-[85px];
+    @apply max-w-[85px] mx-auto;
 }
 
 section .specialistyData .specialistyName {
