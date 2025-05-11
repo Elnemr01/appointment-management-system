@@ -6,6 +6,8 @@ import Contact from './pages/Contact'
 import AllDoctors from './pages/AllDoctors'
 import Login from './pages/Login'
 import Doctor from './pages/Doctor'
+import Header from './components/header/Header'
+import Footer from './components/fotter/Footer'
 
 function App() {
   
@@ -13,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+        <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
@@ -24,6 +27,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/doctor/:id' element={<Doctor/>}/>
         </Routes>
+        <Footer/>
       </div>
     </div>
   )

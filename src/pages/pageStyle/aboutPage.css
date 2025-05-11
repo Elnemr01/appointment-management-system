@@ -50,7 +50,7 @@
 }
 
 .aboutPage .reasons .reason {
-    @apply p-[4rem] border border-[#eee] text-[15px] transition duration-[.3s] 
+    @apply p-[3.5rem] border border-[#eee] text-[15px] transition duration-[.3s] 
     transition-all text-gray-600 hover:text-white hover:bg-onHoverColor cursor-pointer;
 }
 
