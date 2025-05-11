@@ -17,7 +17,7 @@
     @apply hidden lg:flex gap-10 text-sm font-medium ;
 }
 .header_links {
-    @apply cursor-pointer hover:text-blue-500 ;
+    @apply cursor-pointer transition-colors duration-300 hover:text-blue-500 ;
 }
 .header_desktop_btn {
     @apply hidden lg:block  ;
