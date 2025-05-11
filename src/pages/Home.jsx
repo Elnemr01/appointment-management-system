@@ -1,8 +1,8 @@
 
 
 import Hero from '../components/hero/Hero'
-import HomeTitle from '../components/homeTitle/HomeTitle'
 import Specialisty from '../components/specialistySection/Specialisty'
+import TopDoctors from '../components/topDoctors/TopDoctors'
 
 
 const Home = () => {
@@ -10,6 +10,7 @@ const Home = () => {
         <div className='home'>
             <Hero/>
             <Specialisty/>
+            <TopDoctors/>
         </div>
     )
 }
