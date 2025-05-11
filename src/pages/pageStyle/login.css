@@ -1,5 +1,5 @@
 .form-container {
-  @apply flex m-auto gap-5 p-6 flex-col w-96 shadow-lg text-gray-500;
+  @apply flex  m-auto gap-5 p-6 flex-col w-96 shadow-lg bg-white text-gray-500 ;
 }
 
 .form-title {

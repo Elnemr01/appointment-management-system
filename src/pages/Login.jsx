@@ -7,7 +7,7 @@ const Login = () => {
     }
     return (
         <>
-            <form className=" h-screen flex items-center" onSubmit={handleSubmit}>
+            <form className="flex items-start" onSubmit={handleSubmit}>
 
                 <div className="form-container">
 
