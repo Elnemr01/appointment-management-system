@@ -1,9 +1,10 @@
 import React from 'react'
 import './card.css'
+import { Link } from 'react-router'
 
 const DoctorCard = ({doctor}) => {
     return (
-        <div className='docCard'>
+        <Link className='docCard' to={`/doctor/${doctor._id}`}>
             <div className="image">
                 <img src={doctor.image} alt="check connection" loading='lazy'/>
             </div>
@@ -13,7 +14,7 @@ const DoctorCard = ({doctor}) => {
             </div>
             <p className="name">{doctor.name}</p>
             <div className="speciality">{doctor.speciality}</div>
-        </div>
+        </Link>
     )
 }
 

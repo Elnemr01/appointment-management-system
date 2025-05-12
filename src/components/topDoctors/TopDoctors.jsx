@@ -18,7 +18,7 @@ const TopDoctors = () => {
             text2={'Simply browse through our extensive list of trusted doctors.'}/>
 
             <div className="doctorCard">
-                {topDoc.slice(0,10).map((e)=> <Link to={`/doctor/${e._id}`} key={e._id}><DoctorCard doctor={e}/></Link>)}
+                {topDoc.slice(0,10).map((e)=> <DoctorCard doctor={e} key={e._id}/>)}
             </div>
             <Link to={'/allDocutors'}>more</Link>
         </section>
