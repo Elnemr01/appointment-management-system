@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../../assets/assets_frontend/assets";
 import './header.css'
 import { Link, NavLink } from "react-router-dom";
+import { OurContext } from "../../contextAPI/FilterName";
 const Header = () => {
+  // added by elnemr
+  const {setFilter}=useContext(OurContext);
+  // ----------------------------------------------
   const [menuOpen, setMenuOpen] = useState(false);
   const links = [
     { to: '/', link: 'Home' },
     { to: '/allDocutors', link: 'ALL DOCTORS' },
     { to: '/about', link: 'ABOUT' },
     { to: '/contact', link: 'CONTACT' },
-
   ]
+  // added by elnemr
+  const showAll = (to)=> {
+    if(to==='/allDocutors')
+      setFilter('');
+  }
+  // ----------------------------------------------
   return (
     <header className="header">
       <div className="header_desktop">
@@ -21,7 +30,7 @@ const Header = () => {
         <ul className="header_desktop_ul">
           {
             links.map((link, idx) => (
-              <li key={idx} className="header_links">
+              <li key={idx} className="header_links" onClick={()=> showAll(link.to)}>
                 <NavLink to={link.to}>{link.link}
                   <hr className="link_active" />
                 </NavLink>

@@ -1,9 +1,14 @@
 .docCard {
-    @apply rounded-[10px] border-[1.5px] border-[#eee] overflow-hidden;
+    @apply rounded-[10px] border-[1.5px] border-[#eee] overflow-hidden 
+    transition duration-300 block;
+}
+
+.docCard:hover {
+    @apply -translate-y-[10px];
 }
 
 .docCard .image {
-    @apply max-w-[300px] bg-[rgb(234_239_255)];
+    @apply bg-[rgb(234_239_255)];
 }
 
 .docCard .available {

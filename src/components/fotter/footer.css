@@ -1,5 +1,5 @@
 .footer-container {
-    @apply mt-40 flex items-start flex-col md:flex-row md:justify-between md:px-16;
+    @apply mt-40 flex items-start flex-col md:flex-row md:justify-between ;
 }
 
 .footer-left {
@@ -11,7 +11,7 @@
 }
 
 .footer-description {
-    @apply text-sm text-gray-500 w-full md:w-[65%];
+    @apply text-sm text-gray-500 w-full md:w-[80%];
 }
 
 .footer-column {
