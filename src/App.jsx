@@ -8,9 +8,10 @@ import Login from './pages/Login'
 import Doctor from './pages/Doctor'
 import Header from './components/header/Header'
 import Footer from './components/fotter/Footer'
+import Myappointments from './pages/Myappointments'
+import Profile from './pages/Profile'
 
 function App() {
-  
 
   return (
     <div className="App">
@@ -23,6 +24,8 @@ function App() {
           <Route path='/allDocutors' element={<AllDoctors/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/doctor/:id' element={<Doctor/>}/>
+          <Route path='/my-appointments' element={<Myappointments/>}/>
+          <Route path='/my-profile' element={<Profile/>}/>
         </Routes>
         <Footer/>
       </div>
