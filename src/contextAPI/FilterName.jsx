@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { createContext } from "react";
 
-
-
-
-
 export let OurContext =createContext();
 
 const FilterName = ({children}) => {
