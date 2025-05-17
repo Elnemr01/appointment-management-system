@@ -6,7 +6,7 @@ import RelatedDoctor from '../components/RelatedDoctors/RelatedDoctors'
 import DoctorTime from '../components/DoctorTime/DoctorTime'
 
 const Doctor = () => {
-    const { id } = useParams()
+    const { id } = useParams();
     const [doctor, setDoctor] = useState({})
     const [relatedDoctors, setRelatedDoctors] = useState([])
 

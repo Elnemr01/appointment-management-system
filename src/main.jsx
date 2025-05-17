@@ -3,11 +3,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import FilterName from './contextAPI/FilterName.jsx'
+import { Provider } from 'react-redux'
+import { store } from './reduxToolKit/store.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <FilterName>
-      <App />
-    </FilterName>
+    <Provider store={store}>
+      <FilterName>
+        <App />
+      </FilterName>
+    </Provider>
   </BrowserRouter>
 )
