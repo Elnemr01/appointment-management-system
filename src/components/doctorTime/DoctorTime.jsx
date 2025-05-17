@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import './doctorTime.css'
+import { toast, ToastContainer } from "react-toastify";
 const DoctorTime = () => {
     const [doctorTime, setDoctorTime] = useState([]);
     const [selectedDayIndex, setSelectedDayIndex] = useState(0);
@@ -56,6 +57,22 @@ const DoctorTime = () => {
         const dayNum = date.getDate();
         return { day, dayNum };
     };
+
+    const massage = () => {
+        if (selectedDayIndex === null && selectedTimeIndex === null) {
+            toast.error('Please select time and day')
+            return;
+        }
+        if (selectedTimeIndex === null) {
+            toast.error('Please select a time');
+            return;
+        }
+        if (selectedDayIndex !== null && selectedTimeIndex !== null) {
+            toast.success('Appointment Booked')
+            return;
+        }
+    }
+
     return (
         <>
             {/* المواعيد */}
@@ -93,9 +110,10 @@ const DoctorTime = () => {
                     )}
                 </div>
 
-                <button className="book-button">
+                <button className="book-button" onClick={massage}>
                     Book an appointment
                 </button>
+                <ToastContainer />
             </div>
         </>
     )
