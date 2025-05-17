@@ -12,6 +12,7 @@ import chats_icon from './chats_icon.svg'
 import verified_icon from './verified_icon.svg'
 import arrow_icon from './arrow_icon.svg'
 import info_icon from './info_icon.svg'
+import upload_area from './upload_area.png'
 import upload_icon from './upload_icon.png'
 import stripe_logo from './stripe_logo.png'
 import razorpay_logo from './razorpay_logo.png'
@@ -54,6 +55,7 @@ export const assets = {
     cross_icon,
     dropdown_icon,
     upload_icon,
+    upload_area,
     stripe_logo,
     razorpay_logo
 }

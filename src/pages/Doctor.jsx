@@ -3,7 +3,7 @@ import { doctors } from '../assets/assets_frontend/assets'
 import { useParams } from 'react-router'
 import DoctorDetils from '../components/DoctorDetils/DoctorDetils'
 import RelatedDoctor from '../components/RelatedDoctors/RelatedDoctors'
-import DoctorTime from '../components/DoctorTime/DoctorTime'
+import DoctorTime from '../components/doctorTime/DoctorTime'
 
 const Doctor = () => {
     const { id } = useParams();
@@ -22,12 +22,11 @@ const Doctor = () => {
         const otherDoctors = sameSpecialityDoctors.filter(doc => doc._id !== doctor._id);
         setRelatedDoctors(otherDoctors);
     }, [doctor]);
-
     return (
         <>
             <DoctorDetils doctors={doctor} />
 
-            <DoctorTime/>
+            <DoctorTime doctors={doctor}/>
 
             <RelatedDoctor relatedDoctors={relatedDoctors}/>
         </>

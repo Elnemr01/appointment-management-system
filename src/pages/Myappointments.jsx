@@ -12,13 +12,12 @@ const Myappointments = () => {
         setAppointments(appointmentArr);
     },[appointmentArr]);
 
-
     return (
         <section className="myAppointments">
             <h2 className="pageName">my appointments</h2>
             <div className="appointments">
                 {
-                    appointments.map((e)=> <AppointmentCard appointmentData={e}/>)
+                    appointments.map((e , idx)=> <AppointmentCard key={idx} appointmentData={e}/>)
                 }
             </div>
         </section>
