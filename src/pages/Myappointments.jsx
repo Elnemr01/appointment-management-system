@@ -6,7 +6,6 @@ import { doctors } from '../assets/assets_frontend/assets';
 const Myappointments = () => {
     let appointmentArr =useSelector(state => state.appContainer);
     let [appointments,setAppointments]=useState([]);
-    // console.log(appointmentArr);
 
 
     useEffect(()=>{
@@ -21,10 +20,6 @@ const Myappointments = () => {
                 {
                     appointments.map((e)=> <AppointmentCard appointmentData={e}/>)
                 }
-
-                {/* exapmle data */}
-                <AppointmentCard appointmentData={doctors[0]}/>
-                <AppointmentCard appointmentData={doctors[0]}/>
             </div>
         </section>
     )

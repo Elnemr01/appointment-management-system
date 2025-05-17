@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import './doctorTime.css'
 import { toast, ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addAppointment } from "../../reduxToolKit/AppointmentSlice";
+import { OurContext } from "../../contextAPI/FilterName";
 const DoctorTime = () => {
     const [doctorTime, setDoctorTime] = useState([]);
     const [selectedDayIndex, setSelectedDayIndex] = useState(0);
     const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
+    const {login}=useContext(OurContext);
+    const dispatch =useDispatch();
 
     useEffect(() => {
         const today = new Date();
@@ -59,6 +64,10 @@ const DoctorTime = () => {
     };
 
     const massage = () => {
+        if(!login) {
+            toast.error('Please login first');
+            return;
+        }
         if (selectedDayIndex === null && selectedTimeIndex === null) {
             toast.error('Please select time and day')
             return;
@@ -68,7 +77,18 @@ const DoctorTime = () => {
             return;
         }
         if (selectedDayIndex !== null && selectedTimeIndex !== null) {
-            toast.success('Appointment Booked')
+            toast.success('Appointment Booked');
+            // dispatch(addAppointment({
+
+            // }));
+            // appointment data = {
+            //     doctor image,
+            //     doctor name,
+            //     doctor speciality,
+            //     doctor address,
+            //     date,
+            //     time
+            // }
             return;
         }
     }

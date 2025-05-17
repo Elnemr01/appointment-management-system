@@ -17,7 +17,7 @@ const FilterBySpeciality = () => {
             <p className='filter-btn' onClick={() => setShowFilter(!showFilter)}>filters</p>
             {
                 speciality.map((e, i) => {
-                    return <li key={i} className={`${filterName === e ? 'choicen' : ''} ${showFilter ? 'hidden' : 'block'}`}
+                    return <li key={i} className={`${filterName === e ? 'choicen' : ''} ${!showFilter ? 'hidden' : 'block'}`}
                         onClick={() => setFilter(e)}>
                         {e}
                     </li>

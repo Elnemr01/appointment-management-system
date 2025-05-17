@@ -8,10 +8,15 @@ let appointmentSlice =createSlice({
             state.push(action.payload);
             return state;
         },
+
+        cancelAppointment : (state,action)=> {
+            state=state.filter((e)=> e.id!==action.payload);
+            return state;
+        },
     }
 })
 
 
 
 export default appointmentSlice.reducer;
-export let {addAppointment}=appointmentSlice.actions;
+export let {addAppointment,cancelAppointment}=appointmentSlice.actions;

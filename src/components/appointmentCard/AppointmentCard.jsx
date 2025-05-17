@@ -1,8 +1,11 @@
 import React from 'react'
 import './appointmentCard.css'
 import { doctors } from '../../assets/assets_frontend/assets'
+import { useDispatch } from 'react-redux'
+import { cancelAppointment } from '../../reduxToolKit/AppointmentSlice'
 
 const AppointmentCard = ({appointmentData}) => {
+    const dispatch=useDispatch();
     return (
         <div className="appointmentCard">
             <div className="firstPart">
@@ -20,21 +23,10 @@ const AppointmentCard = ({appointmentData}) => {
             </div>
             <div className="buttons">
                 <button>pay online</button>
-                <button>cancel appointment</button>
+                <button onClick={()=> dispatch(cancelAppointment(appointmentData.id))}>cancel appointment</button>
             </div>
         </div>
     )
 }
-
-/**
-    appointment data = {
-        doctor image,
-        doctor name,
-        doctor speciality,
-        doctor address,
-        date,
-        time
-    }
- */
 
 export default AppointmentCard
