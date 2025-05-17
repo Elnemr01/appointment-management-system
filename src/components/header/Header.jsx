@@ -3,9 +3,11 @@ import { assets } from "../../assets/assets_frontend/assets";
 import './header.css'
 import { Link, NavLink } from "react-router-dom";
 import { OurContext } from "../../contextAPI/FilterName";
+import Account from "../account/Account";
 const Header = () => {
   // added by elnemr
-  const {setFilter}=useContext(OurContext);
+  const { setFilter, login } = useContext(OurContext);
+
   // ----------------------------------------------
   const [menuOpen, setMenuOpen] = useState(false);
   const links = [
@@ -15,8 +17,8 @@ const Header = () => {
     { to: '/contact', link: 'CONTACT' },
   ]
   // added by elnemr
-  const showAll = (to)=> {
-    if(to==='/allDocutors')
+  const showAll = (to) => {
+    if (to === '/allDocutors')
       setFilter('');
   }
   // ----------------------------------------------
@@ -30,7 +32,7 @@ const Header = () => {
         <ul className="header_desktop_ul">
           {
             links.map((link, idx) => (
-              <li key={idx} className="header_links" onClick={()=> showAll(link.to)}>
+              <li key={idx} className="header_links" onClick={() => showAll(link.to)}>
                 <NavLink to={link.to}>{link.link}
                   <hr className="link_active" />
                 </NavLink>
@@ -40,19 +42,35 @@ const Header = () => {
         </ul>
 
         {/* Button */}
-          <Link to={'/login'}>
-        <button className="header_desktop_btn btn_primary">
-          Create Account
-        </button>
-        </Link>
+        {
+          login ? '' : <Link to={'/login'}>
+            <button className="header_desktop_btn btn_primary">
+              Create Account
+            </button>
+          </Link>
+        }
+
 
         {/* Mobile Menu Button */}
-        <button
-          className={`${menuOpen ? 'hidden' : ""} lg:hidden p-2 z-50`}
-          onClick={() => setMenuOpen(true)}
-        >
-          <img src={assets.menu_icon} alt="menu" className="h-4" />
-        </button>
+        {
+          login ? (
+            <div className="flex gap-3">
+              <Account />
+              <button
+                className={`${menuOpen ? 'hidden' : ""} lg:hidden p-2 z-50`}
+                onClick={() => setMenuOpen(true)}
+              >
+                <img src={assets.menu_icon} alt="menu" className="h-4" />
+              </button>
+            </div>
+          ) :
+            <button
+              className={`${menuOpen ? 'hidden' : ""} lg:hidden p-2 z-50`}
+              onClick={() => setMenuOpen(true)}
+            >
+              <img src={assets.menu_icon} alt="menu" className="h-4" />
+            </button>
+        }
       </div>
 
       {/* Mobile Menu */}
@@ -78,11 +96,18 @@ const Header = () => {
           }
         </ul>
         <div className="px-4 flex justify-center">
-          <Link to={'/login'}>
-          <button className="btn_primary">
-            Create Account
-          </button>
-          </Link>
+          {
+            login ? (
+              ''
+            ) :
+              (
+                <Link to={'/login'}>
+                  <button className="btn_primary">
+                    Create Account
+                  </button>
+                </Link>
+              )
+          }
         </div>
       </div>
     </header>

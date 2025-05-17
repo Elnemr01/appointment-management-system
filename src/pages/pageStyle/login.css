@@ -21,3 +21,6 @@
 .toggle-link {
   @apply ml-1 cursor-pointer text-blue-400 underline;
 }
+.error_massage {
+  @apply text-red-500 text-sm mt-1
+}

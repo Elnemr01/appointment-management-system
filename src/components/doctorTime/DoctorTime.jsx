@@ -4,13 +4,15 @@ import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "../../reduxToolKit/AppointmentSlice";
 import { OurContext } from "../../contextAPI/FilterName";
-const DoctorTime = () => {
+const DoctorTime = ({ doctors }) => {
     const [doctorTime, setDoctorTime] = useState([]);
+    const [slotDate, setSlotDate] = useState(null)
+    const [slotTime, setSlotTime] = useState(null)
+
     const [selectedDayIndex, setSelectedDayIndex] = useState(0);
     const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
-    const {login}=useContext(OurContext);
-    const dispatch =useDispatch();
-
+    const { login } = useContext(OurContext);
+    const dispatch = useDispatch();
     useEffect(() => {
         const today = new Date();
         const now = new Date();
@@ -64,7 +66,7 @@ const DoctorTime = () => {
     };
 
     const massage = () => {
-        if(!login) {
+        if (!login) {
             toast.error('Please login first');
             return;
         }
@@ -78,21 +80,18 @@ const DoctorTime = () => {
         }
         if (selectedDayIndex !== null && selectedTimeIndex !== null) {
             toast.success('Appointment Booked');
-            // dispatch(addAppointment({
+            dispatch(addAppointment({
+                image: doctors.image,
+                name: doctors.name,
+                speciality: doctors.speciality,
+                address: doctors.address,
+                date: slotDate,
+                time: slotTime
+            }))
 
-            // }));
-            // appointment data = {
-            //     doctor image,
-            //     doctor name,
-            //     doctor speciality,
-            //     doctor address,
-            //     date,
-            //     time
-            // }
             return;
         }
     }
-
     return (
         <>
             {/* المواعيد */}
@@ -104,7 +103,10 @@ const DoctorTime = () => {
                         return (
                             <div
                                 key={i}
-                                onClick={() => setSelectedDayIndex(i)}
+                                onClick={() => {
+                                    setSelectedDayIndex(i)
+                                    setSlotDate({ dayNum, day, year: new Date().getFullYear() })
+                                }}
                                 className={`day-item ${selectedDayIndex === i ? 'day-item-active' : ''}`}
                             >
                                 <p>{day}</p>
@@ -119,7 +121,10 @@ const DoctorTime = () => {
                         doctorTime[selectedDayIndex].map((slot, index) => (
                             <p
                                 key={index}
-                                onClick={() => setSelectedTimeIndex(index)}
+                                onClick={() => {
+                                    setSelectedTimeIndex(index)
+                                    setSlotTime(slot.time)
+                                }}
                                 className={`slot-item ${selectedTimeIndex === index ? 'slot-item-active' : ''}`}
                             >
                                 {slot.time}
