@@ -3,7 +3,7 @@ import './appointmentCard.css'
 import { useDispatch } from 'react-redux'
 import { cancelAppointment } from '../../reduxToolKit/AppointmentSlice'
 
-const AppointmentCard = ({appointmentData}) => {
+const AppointmentCard = ({appointmentData}) => {    
     const dispatch=useDispatch();
     return (
         <div className="appointmentCard">
@@ -17,7 +17,7 @@ const AppointmentCard = ({appointmentData}) => {
                     <li className="address">address: </li>
                     <li className="address1">{appointmentData.address.line1 || ''}</li>
                     <li className="address2">{appointmentData.address.line2 || ''}</li>
-                    <li className="dateAndTime"><span>date & time:</span> {appointmentData.date.dayNum} {appointmentData.date.day} {appointmentData.date.year} | {appointmentData.time}</li>
+                    <li className="dateAndTime"><span>date & time:</span> {appointmentData.date?.dayNum} {appointmentData.date?.day} {appointmentData.date?.year} | {appointmentData.time}</li>
                 </ul>
             </div>
             <div className="buttons">
