@@ -4,38 +4,38 @@ import { OurContext } from '../contextAPI/FilterName';
 import { assets } from './../assets/assets_frontend/assets';
 import { toast } from 'react-toastify';
 
-const Profile = ({userData}) => {
-    let {login}=useContext(OurContext);
-    let [editable,setEditable]=useState(false);
-    let [name,setName]=useState('ahmed elenmr');
-    let [email,setEmail]=useState('ahmed@gm.com');
-    let [phone,setPhone]=useState('00000000000');
-    let [address,setAddress]=useState('');
-    let [gender,setGender]=useState('');
-    let [birthday,setBirthday]=useState('');
+const Profile = ({ userData }) => {
+    let { login } = useContext(OurContext);
+    let [editable, setEditable] = useState(false);
+    let [name, setName] = useState('ahmed elenmr');
+    let [email, setEmail] = useState('ahmed@gm.com');
+    let [phone, setPhone] = useState('00000000000');
+    let [address, setAddress] = useState('');
+    let [gender, setGender] = useState('');
+    let [birthday, setBirthday] = useState('');
 
-    const handleAfterEdit = ()=> {
+    const handleAfterEdit = () => {
         setEditable(!editable);
         toast.success("Profile Updated");
     }
 
     // معلومات المستخدم
-    // const user = JSON.parse('currentUser');
-    // user.email
-    // user.full_name
+    // const user = JSON.parse(localStorage.getItem('currentUser'));
+    // console.log(user.email);
+    // console.log(user.full_name);
 
 
     // if (!login) return null;
     return (
         <div className="profile">
             <div className="picture">
-                <img src={assets.upload_area} alt="check connection" loading='lazy'/>
+                <img src={assets.upload_area} alt="check connection" loading='lazy' />
             </div>
             {/* user name */}
             <div className="name">
                 {
                     !editable ? <h1>{name}</h1> :
-                    <input type="text" value={name} onChange={(eve)=> setName(eve.target.value)}/>
+                        <input type="text" value={name} onChange={(eve) => setName(eve.target.value)} />
                 }
             </div>
             {/* contact info */}
@@ -51,7 +51,7 @@ const Profile = ({userData}) => {
                     <label htmlFor="phone">phone:</label>
                     {
                         !editable ? <p>{phone}</p> :
-                        <input type="number" value={phone} id='phone' onChange={(eve)=> setPhone(eve.target.value)}/>
+                            <input type="number" value={phone} id='phone' onChange={(eve) => setPhone(eve.target.value)} />
                     }
                 </div>
                 {/* address */}
@@ -59,7 +59,7 @@ const Profile = ({userData}) => {
                     <label htmlFor="address">address:</label>
                     {
                         !editable ? <p>{address}</p> :
-                        <input type="text" value={address} id='address' onChange={(eve)=> setAddress(eve.target.value)}/>
+                            <input type="text" value={address} id='address' onChange={(eve) => setAddress(eve.target.value)} />
                     }
                 </div>
             </div>
@@ -70,10 +70,10 @@ const Profile = ({userData}) => {
                     <label htmlFor="gender">gender :</label>
                     {
                         !editable ? <p>{gender}</p> :
-                        <select name="gender" id="gender" onChange={(eve)=> setGender(eve.target.value)}>
-                            <option value="male">male</option>
-                            <option value="female">female</option>
-                        </select>
+                            <select name="gender" id="gender" onChange={(eve) => setGender(eve.target.value)}>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                            </select>
                     }
                 </div>
                 {/* birthday */}
@@ -81,12 +81,12 @@ const Profile = ({userData}) => {
                     <label htmlFor="birthday">birthday:</label>
                     {
                         !editable ? <p>{birthday}</p> :
-                        <input type='date' value={birthday} onChange={(eve)=> setBirthday(eve.target.value)}/>
+                            <input type='date' value={birthday} onChange={(eve) => setBirthday(eve.target.value)} />
                     }
                 </div>
             </div>
-            {editable ? <button onClick={()=> handleAfterEdit()}>save information</button> 
-            : <button onClick={()=> setEditable(!editable)}>edit</button>}
+            {editable ? <button onClick={() => handleAfterEdit()}>save information</button>
+                : <button onClick={() => setEditable(!editable)}>edit</button>}
         </div>
     )
 }
