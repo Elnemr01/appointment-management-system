@@ -3,25 +3,42 @@ import './pageStyle/login.css';
 import Joi from "joi";
 import { useNavigate } from "react-router";
 import { OurContext } from "../contextAPI/FilterName";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
     const [loginAction, setLoginAction] = useState(false);
     const [errors, setErrors] = useState({});
-    const [user, setUser] = useState({
-        full_name: '',
-        email: '',
-        password: ''
-    });
-    const { setLogin } = useContext(OurContext);
+    const [loginData, setLoginData] = useState({ email: '', password: '' });
+    const [registerData, setRegisterData] = useState({ full_name: '', email: '', password: '' });
 
-    const navigate = useNavigate()
+    const { setLogin } = useContext(OurContext);
+    const navigate = useNavigate();
+
     const handelChange = (e) => {
         const { name, value } = e.target;
-        setUser({ ...user, [name]: value });
-        setErrors({ ...errors, [name]: '' });
+
+        if (loginAction) {
+            setLoginData({ ...loginData, [name]: value });
+            setErrors({ ...errors, [name]: '' });
+        } else {
+            setRegisterData({ ...registerData, [name]: value });
+            setErrors({ ...errors, [name]: '' });
+        }
     };
 
-    // Validation for register
+    const validateLogin = () => {
+        const schema = Joi.object({
+            email: Joi.string().email({ tlds: { allow: false } }).required().messages({
+                'string.empty': 'Email is required',
+                'string.email': 'Email must be valid',
+            }),
+            password: Joi.string().required().messages({
+                'string.empty': 'Password is required',
+            }),
+        });
+        return schema.validate(loginData, { abortEarly: false });
+    };
+
     const validateRegister = () => {
         const schema = Joi.object({
             full_name: Joi.string().min(8).max(30).required().messages({
@@ -41,42 +58,60 @@ const Login = () => {
                     'string.pattern.base': 'Password must be 6-20 characters and contain only letters and numbers',
                 }),
         });
-        return schema.validate(user, { abortEarly: false });
-    };
-
-    // Validation for login
-    const validateLogin = () => {
-        const schema = Joi.object({
-            email: Joi.string().email({ tlds: { allow: false } }).required().messages({
-                'string.empty': 'Email is required',
-                'string.email': 'Email must be valid',
-            }),
-            password: Joi.string().required().messages({
-                'string.empty': 'Password is required',
-            }),
-        });
-        return schema.validate(user, { abortEarly: false });
+        return schema.validate(registerData, { abortEarly: false });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        // get valdation
         const { error } = loginAction ? validateLogin() : validateRegister();
-
         if (error) {
             const errorObj = {};
             error.details.forEach((err) => {
                 errorObj[err.path[0]] = err.message;
             });
             setErrors(errorObj);
-        } else {
+            return;
+        };
+
+        if (loginAction) {
+            // حالة تسجيل الدخول
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const chackUser = users.find(u => u.email === loginData.email && u.password === loginData.password);
+            // اذا كان المستخدم موجود
+            if (chackUser) {
+                toast.success('successfully logged in');
+                setErrors({});
+                setLogin(true);
+                localStorage.setItem("currentUser", JSON.stringify(chackUser));
+                setTimeout(() => {
+                    navigate('/');
+                }, 1500);
+            }
+            // المستخدم غير موجود
+            else {
+                toast.error('the email or password incorrect');
+            }
+        }
+        // انشاء حساب جديد
+        else {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const emailExists = users.some((u) => u.email === registerData.email);
+            // لو كان مسجل سابقا
+            if (emailExists) {
+                toast.error("This email is already in use");
+                return;
+            }
+            // لو غير مسجل
+            users.push(registerData);
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("currentUser", JSON.stringify(registerData));
+            toast.success("Account created successfully");
+            setLogin(true);
             setErrors({});
-            console.log("Form submitted:", user);
-            setLogin(true)
-            navigate('/')
+            setTimeout(() => navigate('/'), 1500);
         }
     };
-
     return (
         <>
             <form className="flex items-start" onSubmit={handleSubmit}>
@@ -93,6 +128,7 @@ const Login = () => {
                                     className="form-input"
                                     name="email"
                                     id="email"
+                                    value={loginData.email}
                                     onChange={handelChange}
                                 />
                                 {errors.email && <p className="error_massage">{errors.email}</p>}
@@ -105,6 +141,7 @@ const Login = () => {
                                     className="form-input"
                                     name="password"
                                     id="password"
+                                    value={loginData.password}
                                     onChange={handelChange}
                                 />
                                 {errors.password && <p className="error_massage">{errors.password}</p>}
@@ -125,6 +162,7 @@ const Login = () => {
                                     className="form-input"
                                     name="full_name"
                                     id="full_name"
+                                    value={registerData.full_name}
                                     onChange={handelChange}
                                 />
                                 {errors.full_name && <p className="error_massage">{errors.full_name}</p>}
@@ -137,6 +175,7 @@ const Login = () => {
                                     className="form-input"
                                     name="email"
                                     id="email"
+                                    value={registerData.email}
                                     onChange={handelChange}
                                 />
                                 {errors.email && <p className="error_massage">{errors.email}</p>}
@@ -149,6 +188,7 @@ const Login = () => {
                                     className="form-input"
                                     name="password"
                                     id="password"
+                                    value={registerData.password}
                                     onChange={handelChange}
                                 />
                                 {errors.password && <p className="error_massage">{errors.password}</p>}
@@ -164,6 +204,7 @@ const Login = () => {
                     )}
                 </div>
             </form>
+            <ToastContainer autoClose={1500} />
         </>
     );
 };
