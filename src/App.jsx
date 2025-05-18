@@ -11,8 +11,9 @@ import Footer from './components/fotter/Footer'
 import Myappointments from './pages/Myappointments'
 import Profile from './pages/Profile'
 
-function App() {
 
+function App() {
+  
   return (
     <div className="App">
       <div className="container">
@@ -22,7 +23,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/allDocutors' element={<AllDoctors/>}/>
-          <Route path='/login' element={<Login/>}/>
+          <Route path='/login' element={<Login/> }/>
           <Route path='/doctor/:id' element={<Doctor/>}/>
           <Route path='/my-appointments' element={<Myappointments/>}/>
           <Route path='/my-profile' element={<Profile/>}/>

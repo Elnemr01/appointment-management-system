@@ -11,7 +11,7 @@ const Account = () => {
     return (
         <div className="account-container">
             <div className="profile-trigger">
-                <img src={assets.upload_area} className="profile-img" alt="" />
+                <img src={assets.upload_area} className="profile-img" alt="check connection" loading="lazy"/>
                 <img
                     src={assets.dropdown_icon}
                     className="w-3"

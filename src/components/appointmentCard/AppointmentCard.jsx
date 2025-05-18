@@ -1,6 +1,5 @@
 import React from 'react'
 import './appointmentCard.css'
-import { doctors } from '../../assets/assets_frontend/assets'
 import { useDispatch } from 'react-redux'
 import { cancelAppointment } from '../../reduxToolKit/AppointmentSlice'
 
@@ -16,8 +15,8 @@ const AppointmentCard = ({appointmentData}) => {
                     <li className="name">{appointmentData.name}</li>
                     <li className="speciality">{appointmentData.speciality}</li>
                     <li className="address">address: </li>
-                    <li className="address1">{appointmentData.address.line1}</li>
-                    <li className="address2">{appointmentData.address.line2}</li>
+                    <li className="address1">{appointmentData.address.line1 || ''}</li>
+                    <li className="address2">{appointmentData.address.line2 || ''}</li>
                     <li className="dateAndTime"><span>date & time:</span> {appointmentData.date} | {appointmentData.time}</li>
                 </ul>
             </div>

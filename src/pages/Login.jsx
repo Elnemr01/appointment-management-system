@@ -3,7 +3,11 @@ import './pageStyle/login.css';
 import Joi from "joi";
 import { useNavigate } from "react-router";
 import { OurContext } from "../contextAPI/FilterName";
+<<<<<<< HEAD
 import { toast, ToastContainer } from "react-toastify";
+=======
+import { toast } from "react-toastify";
+>>>>>>> 128b950180132a27c1fc54821ea3f5ba763dffc5
 
 const Login = () => {
     const [loginAction, setLoginAction] = useState(false);
@@ -109,7 +113,13 @@ const Login = () => {
             toast.success("Account created successfully");
             setLogin(true);
             setErrors({});
+<<<<<<< HEAD
             setTimeout(() => navigate('/'), 1500);
+=======
+            // console.log("Form submitted:", user);
+            setLogin(true);
+            navigate('/')
+>>>>>>> 128b950180132a27c1fc54821ea3f5ba763dffc5
         }
     };
     return (
