@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import './pageStyle/profilePage.css'
 import { OurContext } from '../contextAPI/FilterName';
 import { assets } from './../assets/assets_frontend/assets';
+import { toast } from 'react-toastify';
 
 const Profile = ({userData}) => {
     let {login}=useContext(OurContext);
@@ -12,6 +13,11 @@ const Profile = ({userData}) => {
     let [address,setAddress]=useState('');
     let [gender,setGender]=useState('');
     let [birthday,setBirthday]=useState('');
+
+    const handleAfterEdit = ()=> {
+        setEditable(!editable);
+        toast.success("Profile Updated");
+    }
 
     // if (!login) return null;
     return (
@@ -73,7 +79,7 @@ const Profile = ({userData}) => {
                     }
                 </div>
             </div>
-            {editable ? <button onClick={()=> setEditable(!editable)}>save information</button> 
+            {editable ? <button onClick={()=> handleAfterEdit()}>save information</button> 
             : <button onClick={()=> setEditable(!editable)}>edit</button>}
         </div>
     )

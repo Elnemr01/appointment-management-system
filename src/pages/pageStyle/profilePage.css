@@ -1,85 +1,57 @@
 .profile .picture {
-    max-width: 150px;
+    @apply max-w-[150px];
 }
 
 .profile .name {
-    margin: 1rem 0;
-    padding: 12px 0;
-    border-bottom: 1px solid gray;
+    @apply my-4 py-3 border-b border-gray-500;
 }
 
 .profile .name h1 {
-    font-size: 1.875rem;
-    font-weight: 500;
+    @apply text-3xl font-medium;
 }
 
 .profile .name input {
-    font-size: 1.875rem;
-    font-weight: 500;
+    @apply text-3xl font-medium;
 }
 
 .profile .infoTitle h2 {
-    text-transform: uppercase;
-    text-decoration: underline;
-    font-size: 14px;
-    color: rgb(75 85 99);
-    margin: .875rem 0;
+    @apply uppercase underline text-sm text-gray-600 my-3.5;
 }
 
 .profile .infoTitle .data {
-    display: flex;
-    gap: 24px;
-    margin-top: 5px;
+    @apply flex gap-6 mt-[5px];
 }
 
 .profile label {
-    text-transform: capitalize;
-    font-size: .875rem;
-    font-weight: 500;
-    color: rgb(84, 84, 84);
-    margin-right: 24px;
+    @apply capitalize text-sm font-medium text-gray-600 mr-6;
 }
 
 .profile p,
 .profile .gender select,
 .profile .gender select option,
 .profile .birthday input {
-    color: rgb(107 114 128);
+    @apply text-gray-500;
 }
 
 /* email field */
-
 .profile .contactInfo .email p {
-    color: rgb(95 111 255 );
+    @apply text-[#5f6fff];
 }
 
 /* phone field */
-
 .profile .contactInfo .phone {
-    margin: 5px 0;
+    @apply my-[5px];
 }
 
 .profile .contactInfo .phone p {
-    color: rgb(95 111 255 );
+    @apply text-[#5f6fff];
 }
 
 /* ----------buttons---------- */
-
 .profile button {
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: 1px solid rgb(95 111 255 );
-    font-size: 1rem;
-    text-transform: capitalize;
-    font-weight: 400;
-    transition: .3s;
-    margin-top: 2rem;
+    @apply px-5 py-2.5 rounded-full border border-[#5f6fff] text-base capitalize font-normal transition mt-8;
 }
 
 .profile button:hover {
-    color: white;
-    background-color: rgb(95 111 255 );
+    @apply text-white bg-[#5f6fff];
 }
-
-
-
