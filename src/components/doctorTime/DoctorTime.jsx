@@ -4,6 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "../../reduxToolKit/AppointmentSlice";
 import { OurContext } from "../../contextAPI/FilterName";
+import { v4 as idv4 } from "uuid";
+
+
+
 const DoctorTime = ({ doctors }) => {
     const [doctorTime, setDoctorTime] = useState([]);
     const [slotDate, setSlotDate] = useState(null)
@@ -81,6 +85,7 @@ const DoctorTime = ({ doctors }) => {
         if (selectedDayIndex !== null && selectedTimeIndex !== null) {
             toast.success('Appointment Booked');
             dispatch(addAppointment({
+                id: idv4(),
                 image: doctors.image,
                 name: doctors.name,
                 speciality: doctors.speciality,

@@ -9,9 +9,12 @@ const FilterName = ({ children }) => {
         const saveLogin = localStorage.getItem('loginStatus');
         return saveLogin === 'true' ? true : false
     });
+
     useEffect(() => {
         localStorage.setItem('loginStatus', login);
     }, [login]);
+
+
     return (
         <OurContext.Provider value={{
             filterName,

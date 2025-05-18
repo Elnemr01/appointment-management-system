@@ -3,6 +3,7 @@ import './pageStyle/login.css';
 import Joi from "joi";
 import { useNavigate } from "react-router";
 import { OurContext } from "../contextAPI/FilterName";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const [loginAction, setLoginAction] = useState(false);
@@ -71,8 +72,8 @@ const Login = () => {
             setErrors(errorObj);
         } else {
             setErrors({});
-            console.log("Form submitted:", user);
-            setLogin(true)
+            // console.log("Form submitted:", user);
+            setLogin(true);
             navigate('/')
         }
     };
