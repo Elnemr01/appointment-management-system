@@ -19,6 +19,12 @@ const Profile = ({userData}) => {
         toast.success("Profile Updated");
     }
 
+    // معلومات المستخدم
+    // const user = JSON.parse('currentUser');
+    // user.email
+    // user.full_name
+
+
     // if (!login) return null;
     return (
         <div className="profile">
