@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { assets } from "../../assets/assets_frontend/assets";
 import './account.css';
 import { OurContext } from "../../contextAPI/FilterName";
@@ -6,12 +6,12 @@ import { Link } from "react-router";
 
 const Account = () => {
     const [profileLink, setProfileLink] = useState(false);
-    const { setLogin } = useContext(OurContext)
+    const { setLogin, profileImage } = useContext(OurContext);
 
     return (
         <div className="account-container">
             <div className="profile-trigger">
-                <img src={assets.upload_area} className="profile-img" alt="check connection" loading="lazy"/>
+                <img src={profileImage || assets.upload_area} className="profile-img" alt="check connection" loading="lazy"/>
                 <img
                     src={assets.dropdown_icon}
                     className="w-3"
@@ -38,7 +38,6 @@ const Account = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 

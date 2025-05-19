@@ -1,35 +1,90 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './pageStyle/profilePage.css'
 import { OurContext } from '../contextAPI/FilterName';
 import { assets } from './../assets/assets_frontend/assets';
 import { toast } from 'react-toastify';
 
 const Profile = ({ userData }) => {
-    let { login } = useContext(OurContext);
+    let { login, setProfileImage } = useContext(OurContext);
     let [editable, setEditable] = useState(false);
-    let [name, setName] = useState('ahmed elenmr');
-    let [email, setEmail] = useState('ahmed@gm.com');
+    let [name, setName] = useState('');
+    let [email, setEmail] = useState('');
     let [phone, setPhone] = useState('00000000000');
     let [address, setAddress] = useState('');
     let [gender, setGender] = useState('');
     let [birthday, setBirthday] = useState('');
+    let [profileImage, setLocalProfileImage] = useState(assets.upload_area);
+    let [newImage, setNewImage] = useState(null);
+
+    useEffect(()=> {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if(user) {
+            setEmail(user.email);
+            setName(user.full_name);
+            setPhone(user.phone || '000000000000');
+            setAddress(user.address || '');
+            setGender(user.gender || '');
+            setBirthday(user.birthday || '');
+            setLocalProfileImage(user.profileImage || assets.upload_area);
+        }
+    },[]);
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setNewImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleAfterEdit = () => {
         setEditable(!editable);
         toast.success("Profile Updated");
+        let user = JSON.parse(localStorage.getItem('currentUser'));
+        
+        // Update profile image if a new one was uploaded
+        if (newImage) {
+            setLocalProfileImage(newImage);
+            setProfileImage(newImage); // Update the context
+        }
+
+        user = {
+            ...user,
+            full_name: name,
+            gender,
+            birthday,
+            phone,
+            address,
+            profileImage: newImage || profileImage
+        }
+
+        let allUsers = JSON.parse(localStorage.getItem('users'));
+        allUsers = allUsers.map((e) => {
+            if (e.password === user.password && e.email === user.email) {
+                return user;
+            } else {
+                return e;
+            }
+        });
+        localStorage.setItem('users', JSON.stringify(allUsers));
+        localStorage.setItem('currentUser', JSON.stringify(user));
     }
 
-    // معلومات المستخدم
-    // const user = JSON.parse(localStorage.getItem('currentUser'));
-    // console.log(user.email);
-    // console.log(user.full_name);
-
-
-    // if (!login) return null;
+    if (!login) return null;
     return (
         <div className="profile">
             <div className="picture">
-                <img src={assets.upload_area} alt="check connection" loading='lazy' />
+                { editable ? (
+                    <label htmlFor="profile-image-upload" style={{ cursor: 'pointer' }}>
+                        <img src={newImage || profileImage} alt="profile" loading='lazy'/>
+                        <input type="file" className='hidden' id="profile-image-upload" accept="image/*" onChange={(event)=> handleImageUpload(event)} />
+                    </label>
+                ) :
+                    <img src={profileImage} alt="profile" loading='lazy' />
+                }
             </div>
             {/* user name */}
             <div className="name">
@@ -51,7 +106,7 @@ const Profile = ({ userData }) => {
                     <label htmlFor="phone">phone:</label>
                     {
                         !editable ? <p>{phone}</p> :
-                            <input type="number" value={phone} id='phone' onChange={(eve) => setPhone(eve.target.value)} />
+                            <input type="number" value={phone ? phone : '0000000000'} id='phone' onChange={(eve) => setPhone(eve.target.value)} />
                     }
                 </div>
                 {/* address */}
@@ -59,7 +114,7 @@ const Profile = ({ userData }) => {
                     <label htmlFor="address">address:</label>
                     {
                         !editable ? <p>{address}</p> :
-                            <input type="text" value={address} id='address' onChange={(eve) => setAddress(eve.target.value)} />
+                            <input type="text" value={address || ''} id='address' onChange={(eve) => setAddress(eve.target.value)} />
                     }
                 </div>
             </div>

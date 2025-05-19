@@ -9,18 +9,23 @@ const FilterName = ({ children }) => {
         const saveLogin = localStorage.getItem('loginStatus');
         return saveLogin === 'true' ? true : false
     });
+    const [profileImage, setProfileImage] = useState(() => {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        return user?.profileImage || null;
+    });
 
     useEffect(() => {
         localStorage.setItem('loginStatus', login);
     }, [login]);
-
 
     return (
         <OurContext.Provider value={{
             filterName,
             setFilter,
             login,
-            setLogin
+            setLogin,
+            profileImage,
+            setProfileImage
         }}>
             {children}
         </OurContext.Provider>
