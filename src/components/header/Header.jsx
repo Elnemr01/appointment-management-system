@@ -11,10 +11,10 @@ const Header = () => {
   // ----------------------------------------------
   const [menuOpen, setMenuOpen] = useState(false);
   const links = [
-    { to: '', link: 'Home' },
-    { to: 'allDocutors', link: 'ALL DOCTORS' },
-    { to: 'about', link: 'ABOUT' },
-    { to: 'contact', link: 'CONTACT' },
+    { to: '/', link: 'Home' },
+    { to: '/allDocutors', link: 'ALL DOCTORS' },
+    { to: '/about', link: 'ABOUT' },
+    { to: '/contact', link: 'CONTACT' },
   ]
   // added by elnemr
   const showAll = (to) => {

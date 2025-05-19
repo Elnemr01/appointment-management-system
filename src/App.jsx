@@ -19,15 +19,15 @@ function App() {
     <div className="App">
       <div className="container">
         <Header/>
-        <Routes path='/'>
-          <Route index element={<Home/>}/>
-          <Route path='about' element={<About/>}/>
-          <Route path='contact' element={<Contact/>}/>
-          <Route path='allDocutors' element={<AllDoctors/>}/>
-          <Route path='login' element={<Login/> }/>
-          <Route path='doctor/:id' element={<Doctor/>}/>
-          <Route path='my-appointments' element={<Myappointments/>}/>
-          <Route path='my-profile' element={<Profile/>}/>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/about' element={<About/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          <Route path='/allDocutors' element={<AllDoctors/>}/>
+          <Route path='/login' element={<Login/> }/>
+          <Route path='/doctor/:id' element={<Doctor/>}/>
+          <Route path='/my-appointments' element={<Myappointments/>}/>
+          <Route path='/my-profile' element={<Profile/>}/>
         </Routes>
         <Footer/>
       </div>
