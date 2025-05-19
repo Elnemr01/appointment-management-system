@@ -126,6 +126,7 @@ const Profile = ({ userData }) => {
                     {
                         !editable ? <p>{gender}</p> :
                             <select name="gender" id="gender" onChange={(eve) => setGender(eve.target.value)}>
+                                <option value="noOption">No option</option>
                                 <option value="male">male</option>
                                 <option value="female">female</option>
                             </select>
