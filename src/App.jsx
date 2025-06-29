@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 import './App.css'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -14,7 +14,7 @@ import Profile from './pages/Profile'
 
 function App() {
 
-  
+
   return (
     <div className="App">
       <div className="container">

@@ -88,7 +88,7 @@ const Header = () => {
           {
             links.map((link, idx) => (
               <li key={idx} className="header_links mobile-links">
-                <NavLink to={link.to}>{link.link}
+                <NavLink to={link.to} onClick={() => setMenuOpen(false)}>{link.link}
                   <hr className="link_active" />
                 </NavLink>
               </li>
